@@ -11,39 +11,30 @@
 <body class="bg-dark">
     <div class="app-wrapper">
         <!-- Vista Principal -->
-        <div id="mainView" class="container">
+        <div id="mainView">
             <h1 class="neon-text">Control de Horas</h1>
             
-            <!-- Scanner -->
+            <!-- Botón de Escaneo -->
+            <button id="startScan" class="neon-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+                Escanear Horario
+            </button>
+
+            <!-- Scanner View -->
             <div id="scannerView" class="scanner-container hidden">
                 <div id="reader"></div>
-                <button id="closeScanner" class="neon-button">Cerrar Scanner</button>
+                <button id="closeScanner" class="neon-button close-button">Cerrar</button>
             </div>
 
-            <!-- Botones de Captura -->
-            <div class="capture-options">
-                <button id="startCamera" class="neon-button">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                        <circle cx="12" cy="13" r="4"/>
-                    </svg>
-                    Usar Cámara
-                </button>
-                
-                <div class="file-upload">
-                    <input type="file" id="fileInput" accept="image/*" capture="environment" class="hidden">
-                    <button id="uploadButton" class="neon-button">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="17 8 12 3 7 8"/>
-                            <line x1="12" y1="3" x2="12" y2="15"/>
-                        </svg>
-                        Subir Imagen
-                    </button>
-                </div>
+            <!-- Historial de Horarios -->
+            <div id="history" class="history-container">
+                <!-- Los horarios escaneados se mostrarán aquí -->
             </div>
 
-            <!-- Resultados -->
+            <!-- Resumen de Horas -->
             <div id="results" class="results-container hidden">
                 <div class="summary-card">
                     <h2 class="card-title">Resumen de Horas</h2>
