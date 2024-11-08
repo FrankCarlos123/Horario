@@ -19,18 +19,11 @@ body {
     color: #fff;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 .app-wrapper {
     max-width: 100vw;
     min-height: 100vh;
-    padding: 1rem;
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
     padding: 1rem;
 }
 
@@ -56,29 +49,38 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
 }
 
 #reader {
     width: 100% !important;
-    max-width: 600px;
-    margin: 0 auto;
     background: var(--dark-surface) !important;
-    border-radius: 12px;
-    overflow: hidden;
 }
 
 #reader video {
-    border-radius: 12px;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Ocultar elementos innecesarios del scanner */
+#reader button {
+    background: var(--dark-card) !important;
+    color: white !important;
+    border: 1px solid var(--neon-secondary) !important;
+}
+
+#reader img {
+    display: none !important;
+}
+
+.close-button {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001;
 }
 
 /* Buttons */
-.capture-options {
-    display: grid;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
 .neon-button {
     width: 100%;
     padding: 1rem;
@@ -94,6 +96,7 @@ body {
     gap: 0.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-bottom: 1rem;
 }
 
 .neon-button:hover, .neon-button:active {
@@ -111,25 +114,35 @@ body {
     stroke-linejoin: round;
 }
 
-/* Results Styles */
-.results-container {
-    margin-top: 2rem;
+/* History Styles */
+.history-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
+.history-item {
+    background: var(--dark-card);
+    border: 1px solid var(--neon-accent);
+    border-radius: 8px;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.history-item .date {
+    color: var(--neon-accent);
+    font-size: 0.9rem;
+}
+
+/* Results Styles */
 .summary-card {
     background: var(--dark-card);
     border-radius: 12px;
     padding: 1.5rem;
     border: 1px solid var(--neon-primary);
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-}
-
-.card-title {
-    color: var(--neon-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    text-align: center;
+    margin-top: 1rem;
 }
 
 .summary-grid {
@@ -166,10 +179,6 @@ body {
     font-weight: 600;
 }
 
-.total-hours .hours-value {
-    font-size: 1.5rem;
-}
-
 .hidden {
     display: none !important;
 }
@@ -178,8 +187,4 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-.results-container:not(.hidden) {
-    animation: fadeIn 0.3s ease-out;
 }
