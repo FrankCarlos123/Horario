@@ -1,164 +1,185 @@
 :root {
-    --neon-blue: #00f3ff;
-    --neon-purple: #bc13fe;
-    --neon-pink: #ff1493;
+    --neon-primary: #00f3ff;
+    --neon-secondary: #bc13fe;
+    --neon-accent: #ff1493;
     --dark-bg: #121212;
     --dark-surface: #1e1e1e;
-    --dark-border: #2a2a2a;
+    --dark-card: #2a2a2a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     background-color: var(--dark-bg);
-    color: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #fff;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-.app-container {
-    background-color: var(--dark-surface);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+.app-wrapper {
+    max-width: 100vw;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 .neon-text {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    color: var(--neon-blue);
-    text-shadow: 0 0 5px var(--neon-blue),
-                 0 0 10px var(--neon-blue),
-                 0 0 20px var(--neon-blue);
+    color: var(--neon-primary);
+    text-shadow: 0 0 5px var(--neon-primary),
+                 0 0 10px var(--neon-primary);
     margin-bottom: 2rem;
 }
 
-.upload-section {
+/* Scanner Styles */
+.scanner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--dark-bg);
+    z-index: 1000;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+#reader {
+    width: 100% !important;
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--dark-surface) !important;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#reader video {
+    border-radius: 12px;
+}
+
+/* Buttons */
+.capture-options {
+    display: grid;
     gap: 1rem;
     margin-bottom: 2rem;
 }
 
-.upload-option {
-    flex: 1;
+.neon-button {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--neon-secondary);
+    background: transparent;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 1.5rem;
-    background-color: var(--dark-border);
-    border-radius: 0.5rem;
+    justify-content: center;
+    gap: 0.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid var(--neon-purple);
 }
 
-.upload-option:hover {
-    background-color: rgba(188, 19, 254, 0.1);
-    box-shadow: 0 0 10px var(--neon-purple);
+.neon-button:hover, .neon-button:active {
+    background: rgba(188, 19, 254, 0.2);
+    box-shadow: 0 0 15px var(--neon-secondary);
 }
 
 .icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    stroke: var(--neon-purple);
-    margin-bottom: 0.5rem;
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.neon-button {
-    background-color: transparent;
-    border: 1px solid var(--neon-blue);
-    color: var(--neon-blue);
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    margin-top: 1rem;
+/* Results Styles */
+.results-container {
+    margin-top: 2rem;
 }
 
-.neon-button:hover {
-    background-color: var(--neon-blue);
-    color: var(--dark-bg);
-    box-shadow: 0 0 10px var(--neon-blue);
-}
-
-.shifts-container {
-    margin: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.shift-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: var(--dark-border);
-    border-radius: 0.5rem;
-    border: 1px solid var(--dark-border);
-    transition: all 0.3s ease;
-}
-
-.shift-item:hover {
-    border-color: var(--neon-pink);
-    box-shadow: 0 0 10px rgba(255, 20, 147, 0.2);
-}
-
-.shift-item.holiday {
-    border-color: var(--neon-pink);
-    background-color: rgba(255, 20, 147, 0.1);
-}
-
-.summary-container {
-    background-color: var(--dark-border);
-    border-radius: 0.5rem;
+.summary-card {
+    background: var(--dark-card);
+    border-radius: 12px;
     padding: 1.5rem;
-    border: 1px solid var(--neon-blue);
+    border: 1px solid var(--neon-primary);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.card-title {
+    color: var(--neon-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .summary-item {
+    background: rgba(0, 243, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hours-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--neon-primary);
+}
+
+.total-hours {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    background-color: rgba(0, 243, 255, 0.05);
-}
-
-.summary-item.total {
+    align-items: center;
+    padding: 1rem;
+    border-top: 1px solid var(--neon-primary);
     margin-top: 1rem;
-    border-top: 1px solid var(--neon-blue);
-    font-weight: bold;
-    background-color: rgba(0, 243, 255, 0.1);
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
-.value {
-    color: var(--neon-blue);
-    font-weight: bold;
-}
-
-#image-preview img {
-    border-radius: 0.5rem;
-    border: 1px solid var(--neon-purple);
-    margin-bottom: 1rem;
+.total-hours .hours-value {
+    font-size: 1.5rem;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Animaciones */
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 5px var(--neon-blue);
-    }
-    50% {
-        box-shadow: 0 0 20px var(--neon-blue);
-    }
-    100% {
-        box-shadow: 0 0 5px var(--neon-blue);
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.processing {
-    animation: glow 1.5s infinite;
+.results-container:not(.hidden) {
+    animation: fadeIn 0.3s ease-out;
 }
