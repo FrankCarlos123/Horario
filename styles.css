@@ -1,0 +1,105 @@
+/* Estilos personalizados */
+body {
+    background-color: #f3f4f6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.shift-item {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+}
+
+.shift-item:hover {
+    background-color: #f3f4f6;
+}
+
+.shift-item.holiday {
+    background-color: #fee2e2;
+}
+
+.shift-item.holiday:hover {
+    background-color: #fecaca;
+}
+
+#camera-section {
+    transition: all 0.2s ease;
+}
+
+#camera-section:hover {
+    background-color: #f9fafb;
+    border-color: #6b7280;
+}
+
+.day-label {
+    font-weight: 500;
+}
+
+.time-label {
+    color: #4b5563;
+}
+
+#hours-summary p {
+    color: #1f2937;
+}
+
+#hours-summary span {
+    font-weight: 500;
+    color: #2563eb;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.shift-item {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Estilos responsivos */
+@media (max-width: 640px) {
+    .container {
+        padding: 1rem;
+    }
+}
+
+/* Estilos para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1f2937;
+    }
+    
+    .shift-item {
+        background-color: #374151;
+        color: #f9fafb;
+    }
+    
+    .shift-item:hover {
+        background-color: #4b5563;
+    }
+    
+    .time-label {
+        color: #d1d5db;
+    }
+    
+    #hours-summary {
+        background-color: #374151;
+    }
+    
+    #hours-summary p {
+        color: #f9fafb;
+    }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Horas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4 max-w-md">
+        <div class="bg-white rounded-lg shadow-lg p-4">
+            <h1 class="text-xl font-bold mb-4">Calculadora de Horas Trabajadas</h1>
+            
+            <!-- Sección de Cámara -->
+            <div id="camera-section" class="border-2 border-dashed rounded-lg p-4 mb-4 text-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <p class="text-sm text-gray-500 mt-2">Toca para capturar horario</p>
+            </div>
+
+            <!-- Lista de Turnos -->
+            <div id="shifts-list" class="space-y-2 mb-4"></div>
+
+            <!-- Resumen de Horas -->
+            <div class="bg-blue-50 rounded-lg p-4">
+                <h2 class="font-bold text-lg mb-2">Resumen de Horas</h2>
+                <div id="hours-summary" class="space-y-1">
+                    <p>Horas Diurnas: <span id="day-hours">0.00</span>h</p>
+                    <p>Horas Nocturnas: <span id="night-hours">0.00</span>h</p>
+                    <p>Horas Dominicales: <span id="sunday-hours">0.00</span>h</p>
+                    <p>Horas Festivas: <span id="holiday-hours">0.00</span>h</p>
+                    <p class="font-bold mt-2">Total: <span id="total-hours">0.00</span>h</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
