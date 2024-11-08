@@ -2,66 +2,72 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Horas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Control de Horas</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-dark">
-    <div class="container mx-auto p-4 max-w-md">
-        <div class="app-container">
-            <h1 class="neon-text">Calculadora de Horas</h1>
+    <div class="app-wrapper">
+        <!-- Vista Principal -->
+        <div id="mainView" class="container">
+            <h1 class="neon-text">Control de Horas</h1>
             
-            <div class="upload-section">
-                <div id="camera-button" class="upload-option">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span>Usar Cámara</span>
-                </div>
+            <!-- Scanner -->
+            <div id="scannerView" class="scanner-container hidden">
+                <div id="reader"></div>
+                <button id="closeScanner" class="neon-button">Cerrar Scanner</button>
+            </div>
 
-                <div id="upload-button" class="upload-option">
-                    <input type="file" id="file-input" accept="image/*" class="hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            <!-- Botones de Captura -->
+            <div class="capture-options">
+                <button id="startCamera" class="neon-button">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
                     </svg>
-                    <span>Subir Imagen</span>
+                    Usar Cámara
+                </button>
+                
+                <div class="file-upload">
+                    <input type="file" id="fileInput" accept="image/*" capture="environment" class="hidden">
+                    <button id="uploadButton" class="neon-button">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Subir Imagen
+                    </button>
                 </div>
             </div>
 
-            <!-- Preview de la imagen -->
-            <div id="image-preview" class="hidden">
-                <img id="preview" src="" alt="Preview" class="w-full rounded-lg">
-                <button id="process-button" class="neon-button">Procesar Imagen</button>
-            </div>
-
-            <!-- Lista de Turnos -->
-            <div id="shifts-list" class="shifts-container"></div>
-
-            <!-- Resumen de Horas -->
-            <div class="summary-container">
-                <h2 class="text-xl font-bold mb-4 text-neon-blue">Resumen de Horas</h2>
-                <div id="hours-summary" class="space-y-2">
-                    <div class="summary-item">
-                        <span>Horas Diurnas:</span>
-                        <span id="day-hours" class="value">0.00</span>h
+            <!-- Resultados -->
+            <div id="results" class="results-container hidden">
+                <div class="summary-card">
+                    <h2 class="card-title">Resumen de Horas</h2>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span>Diurnas</span>
+                            <span id="dayHours" class="hours-value">0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Nocturnas</span>
+                            <span id="nightHours" class="hours-value">0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Dominicales</span>
+                            <span id="sundayHours" class="hours-value">0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Festivos</span>
+                            <span id="holidayHours" class="hours-value">0.00</span>
+                        </div>
                     </div>
-                    <div class="summary-item">
-                        <span>Horas Nocturnas:</span>
-                        <span id="night-hours" class="value">0.00</span>h
-                    </div>
-                    <div class="summary-item">
-                        <span>Horas Dominicales:</span>
-                        <span id="sunday-hours" class="value">0.00</span>h
-                    </div>
-                    <div class="summary-item">
-                        <span>Horas Festivas:</span>
-                        <span id="holiday-hours" class="value">0.00</span>h
-                    </div>
-                    <div class="summary-item total">
-                        <span>Total:</span>
-                        <span id="total-hours" class="value">0.00</span>h
+                    <div class="total-hours">
+                        <span>Total</span>
+                        <span id="totalHours" class="hours-value">0.00</span>
                     </div>
                 </div>
             </div>
